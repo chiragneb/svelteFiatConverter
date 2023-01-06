@@ -4,4 +4,4 @@ using fixer API => https://apilayer.com/marketplace/fixer-api (free limited use 
 
 remixed from This blog post  => https://renedellefont.com/writing/svelte-currency-converter/
 
-/Users/chirag/Programming/converter/screenshot.png
+![screenshot of project](https://ibb.co/rQSVyRJ)
