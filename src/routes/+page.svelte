@@ -1,7 +1,7 @@
 <script>
 import { onMount } from "svelte";
 
-const BASE_URL = "https://api.apilayer.com/fixer/latest"
+const BASE_URL = "https://open.er-api.com/v6/latest"
 
 let currencies = []
 let amount = 1
@@ -24,12 +24,7 @@ function switchCurrency() {
 
 async function fetchRates(base, current) {
     isFlipped = false;
-    const res = await fetch(`${BASE_URL}?base=${base}`, {
-    method: "GET",
-    headers: {
-      'Content-Type': "application/json",
-      'apikey': 'WXI3Suzg65gwhRs77Sl803g9E3gvhfok'
-    }});
+    const res = await fetch(`${BASE_URL}?base=${base}`);
     const data =  await res.json();
 
     exchangeRates = data.rates;
@@ -70,20 +65,12 @@ function handleInput(e) {
   }
 
 onMount(async () => {
-    const res = await fetch(`${BASE_URL}?base=${from}`, {
-    method: "GET",
-    headers: {
-      'Content-Type': "application/json",
-      'apikey': 'WXI3Suzg65gwhRs77Sl803g9E3gvhfok'
-    }
-})
+    const res = await fetch(`${BASE_URL}?base=${from}`)
     const data = await res.json()
     currencies = [from, ...Object.keys(data.rates)].sort();
     exchangeRates = { ...data.rates, [from]: 1 };
     currentRate = exchangeRates[to];
 });
-
-
 
 </script>
 
@@ -128,6 +115,7 @@ onMount(async () => {
             <option>{option}</option>
             {/each}
           </datalist>
+          
         </div>
   
         <button
@@ -159,13 +147,14 @@ onMount(async () => {
         </div>
       </div>
   
-      <div class="flex flex-wrap justify-center w-full pb-2">
-        {#if amount === undefined || from === undefined || to === undefined}
-        <p class="underline text-gray-600 decoration-sky-500 mt-4 mb-10 text-xl">Please enter a valid Amount</p>
+      <div class="flex flex-wrap justify-center w-full pb-2 mb-10">
+        {#if (amount === 0 || amount === null || amount === '' || amount === undefined) || from === 0 || from === null || from === '' || from === undefined || to === 0 || to === null || to === '' || to === undefined}
+          <p>Please enter a valid amount/currency.</p>
         {:else}
-        <p class="underline text-gray-600 decoration-sky-500 mt-4 mb-10 text-xl">{amount} {from} = {convertedAmount} {to}</p>
+          <p>{amount} {from} = {convertedAmount} {to}</p>
         {/if}
       </div>
+      
   
     </div>
   </main>
