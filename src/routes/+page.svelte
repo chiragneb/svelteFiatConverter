@@ -79,9 +79,9 @@ onMount(async () => {
       class="flex flex-col w-full rounded-lg shadow bg-white sm:w-1/2 lg:max-w-xl"
     >
       <h1
-        class="m-0 py-2 px-4 text-center font-thin text-3xl text-white bg-gray-700 rounded-t"
+        class="m-0 py-2 px-4 text-center font-bold text-3xl bg-white-700 rounded-t underline"
       >
-        Fiat Converter 💶 💷 💵 💴
+       Currency Converter 💱
       </h1>
       <div class="flex flex-col items-center justify-center w-full pt-4">
         <label for="amountToConvert">Amount to convert:</label>
@@ -119,7 +119,7 @@ onMount(async () => {
         </div>
   
         <button
-          class="flex items-center justify-center m-0 bg-transparent border-2
+          class="flex items-center justify-center m-0 bg-slate-100 border-2
           border-transparent pointer focus:border-gray-300"
           on:click={switchCurrency}
         >
@@ -163,7 +163,7 @@ onMount(async () => {
 <style>
   :global(body) {
     padding-top: 4rem;
-    background-color: #635d5d;
+    background-color: #000000;
   }
 </style>
 
